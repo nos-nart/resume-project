@@ -1,0 +1,216 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('../partials/head.ejs') %>
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+  <div class="w-full">
+    <div class="flex h-screen">
+      <a style="top: 2rem; left: 2rem"
+        class="capitalize font-bold hover:underline transition-all duration-300 text-xl absolute" href="/">🏠 home <<
+          </a>
+          <div class="w-3/5 bg-gray-300 flex flex-col items-center justify-center">
+            <img style="width: 400px" src="images/sign-up.svg" alt="sign-in">
+            <%- include ('../partials/footer.ejs') %>
+          </div>
+          <div class="flex justify-center items-center w-2/5">
+            <form class="w-full p-8 shadow-lg flex flex-col rounded bg-white p-3" style="width: 500px;">
+              <p class="font-bold text-2xl uppercase text-green-500 flex items-center mb-6">
+                <span>Sign up</span>
+                <svg class="w-6 h-6 ml-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+              </p>
+              <div class="input-material">
+                <input id="username" autocomplete="off" name="username" type="text" placeholder="&nbsp;">
+                <div class="input-icon">
+                  <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <label class="flex items-center" for="name">username</label>
+              </div>
+              <p id="username-err" class="text-sm h-8 text-red-500 font-bold"></p>
+              <div class="input-material">
+                <input id="password" autocomplete="off" name="password" type="password" placeholder="&nbsp;">
+                <div class="input-icon">
+                  <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                    </path>
+                  </svg>
+                </div>
+                <label class="flex items-center" for="password">password</label>
+              </div>
+              <p id="password-err" class="text-sm h-8 text-red-500 font-bold"></p>
+              <div class="input-material">
+                <input id="password-confirm" autocomplete="off" name="confirm-password" type="password"
+                  placeholder="&nbsp;">
+                <div class="input-icon">
+                  <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <label class="flex items-center" for="confirm-password">password</label>
+              </div>
+              <p id="password-confirm-err" class="text-sm h-8 text-red-500 font-bold"></p>
+              <div class="flex justify-end my-3">
+                <div class="flex">
+                  <span>Already have an account?</span>
+                  <a class="transition-all duration-300 hover:underline hover:text-green-500 font-bold ml-2"
+                    href="/sign-in">sign in</a>
+                </div>
+              </div>
+              <p class="text-sm text-red-500 text-left" id="fail-msg"></p>
+              <div class="flex items-center justify-center mt-4">
+                <button id="sign-up" type="button"
+                  class="rounded outline-none hover:shadow transition-all duration-300 text-white bg-green-500 border-none cursor-pointer px-4 py-1">
+                  sign up</button>
+              </div>
+            </form>
+          </div>
+    </div>
+  </div>
+  <script>
+    // JS goes from here
+    (function ($) {
+      $(function ($, undefined) {
+        const ERR_MSG = {
+          MIN_LENGTH_USERNAME: 'USERNAME must have more than 6 character!',
+          MAX_LENGTH_USERNAME: 'USERNAME cannot has more thant 50 character!',
+          REQUIRED_USERNAME: 'USERNAME is required!',
+          MIN_LENGTH_PASSWORD: 'PASSWORD must have more than 6 character!',
+          MAX_LENGTH_PASSWORD: 'PASSWORD cannot has more thant 50 character!',
+          REQUIRED_PASSWORD: 'PASSWORD is required!',
+          CONFIRM_PASSWORD_NOT_MATCH: 'CONFIRM PASSWORD does not match',
+          CONFIRM_PASSWORD_REQUIRED: 'CONFIRM PASSWORD is required!'
+        }
+
+        const $ele = {
+          username: $('#username'),
+          password: $('#password'),
+          passwordConfirm: $('#password-confirm'),
+          signUp: $('#sign-up'),
+          usernameErr: $('#username-err'),
+          passwordErr: $('#password-err'),
+          passwordConfirmErr: $('#password-confirm-err'),
+          failMsg: $('#fail-msg'),
+        }
+
+        function validate(username, password, passwordConfirm) {
+          let err = {
+            hasErr: false,
+            usernameErr: [],
+            passwordErr: [],
+            passwordConfirmErr: []
+          }
+
+          if (username.length > 0) {
+            if (username.length < 6) {
+              err.usernameErr.push(ERR_MSG.MIN_LENGTH_USERNAME)
+            } else if (username.length > 50) {
+              err.usernameErr.push(ERR_MSG.MAX_LENGTH_USERNAME)
+            }
+          } else {
+            err.usernameErr.push(ERR_MSG.REQUIRED_USERNAME)
+          }
+
+          if (password.length > 0) {
+            if (password.length < 6) {
+              err.passwordErr.push(ERR_MSG.MIN_LENGTH_PASSWORD)
+            } else if (password.length > 50) {
+              err.passwordErr.push(ERR_MSG.MAX_LENGTH_PASSWORD)
+            }
+          } else {
+            err.passwordErr.push(ERR_MSG.REQUIRED_PASSWORD)
+          }
+
+          if (passwordConfirm.length > 0) {
+            if (passwordConfirm !== password) {
+              err.passwordConfirmErr.push(ERR_MSG.CONFIRM_PASSWORD_NOT_MATCH)
+            }
+          } else {
+            err.passwordConfirmErr.push(ERR_MSG.REQUIRED_PASSWORD_CONFIRM)
+          }
+
+          if (err.passwordErr.length > 0 || err.passwordErr.length > 0 || err.passwordConfirmErr.length > 0) {
+            err.hasErr = true
+          }
+
+          return err
+        }
+
+        $ele.signUp.on('click', function (event) {
+          event.preventDefault();
+          const $self = $(this);
+          const username = $ele.username.val(),
+            password = $ele.password.val(),
+            passwordConfirm = $ele.passwordConfirm.val()
+
+          const {
+            hasErr,
+            usernameErr,
+            passwordErr,
+            passwordConfirmErr
+          } = validate(username, password, passwordConfirm);
+
+          if (hasErr) {
+            if (usernameErr.length > 0) {
+              $ele.username.parent('.input-material').css('border', '1px solid #e53e3e');
+              $ele.usernameErr.text(usernameErr[0])
+            } else {
+              $ele.username.parent('.input-material').css('border', '1px solid #cbd5e0');
+              $ele.usernameErr.text('')
+            }
+
+            if (passwordErr.length > 0) {
+              $ele.password.parent('.input-material').css('border', '1px solid #e53e3e');
+              $ele.passwordErr.text(passwordErr[0]);
+            } else {
+              $ele.password.parent('.input-material').css('border', '1px solid #cbd5e0');
+              $ele.passwordErr.text('');
+            }
+
+            if (passwordConfirmErr.length > 0) {
+              $ele.passwordConfirm.parent('.input-material').css('border', '1px solid #e53e3e');
+              $ele.passwordConfirmErr.text(passwordConfirmErr[0])
+            } else {
+              $ele.passwordConfirm.parent('.input-material').css('border', '1px solid #cbd5e0');
+              $ele.passwordConfirmErr.text('')
+            }
+          } else {
+            $.post({
+              contentType: 'application/json',
+              dataType: 'json',
+              url: '/api/sign-up',
+              data: JSON.stringify({ username, password })
+            })
+              .done(function (res) {
+                console.log('xxx ~> ', res);
+                window.location.href = "/";
+              })
+              .fail(function (err) {
+                console.log('err ~> ', err);
+                $ele.failMsg.text('Sign up fail!!');
+              })
+          }
+        })
+      });
+    })(jQuery);
+  </script>
+</body>
+
+</html>

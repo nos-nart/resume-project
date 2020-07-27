@@ -1,0 +1,52 @@
+.input-material {
+  position: relative;
+  height: 70px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e0;
+  overflow: hidden;
+}
+
+.input-material label {
+  position: absolute;
+  top: 15px;
+  left: 80px;
+  color: #38a169 !important;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.input-material input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 90%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 1rem 2rem 0.5rem 3rem;
+  background-color: transparent;
+}
+
+.input-material input:focus ~ label {
+  top: 15px !important;
+  color: #38a169 !important;
+  background: white;
+  z-index: 9999;
+}
+
+.input-material input:placeholder-shown ~ label {
+  top: 50%;
+  left: 80px;
+  color: #a0aec0 !important;
+  transform: translate(-50%, -50%);
+}
+
+.input-icon {
+  height: 100%;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+}
