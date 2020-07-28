@@ -4,7 +4,26 @@
 <html lang="en">
 <head>
   <%- include ('../partials/head.ejs') %>
-  <link rel="stylesheet" href="styles/index.css">
+  <style>
+    <%- css.style %>
+
+    [placeholder]:focus::-webkit-input-placeholder {
+      transition: text-indent 0.4s 0.4s ease;
+      text-indent: -100%;
+      opacity: 1;
+    }
+
+    #ava-mask {
+      bottom: 0;
+      left: 0;
+      display: none;
+    }
+
+    #ava:hover #ava-mask {
+      display: flex;
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-300">
@@ -12,19 +31,34 @@
     <%- include ('../partials/header.ejs') %>
   </header>
   <main class="container m-auto">
-    <div class="bg-white my-6 p-4 flex items-end">
-      <div class="input-material">
-        <input id="title" autocomplete="off" name="title" type="text" placeholder="&nbsp;">
-        <div class="input-icon">
-          <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
+    <div class="bg-white rounded my-6 p-6 flex items-end">
+      <input type="text" class="border-b border-solid border-gray-300 px-4 py-2 outline-none" placeholder="CV title 🍉">
+      <span class="mx-8">Update on dd/mm/yyyy</span>
+      <button class="rounded outline-none border-none hover:bg-green-500 bg-green-600 text-white transition-all duration-300 px-3 py-2 text-sm">
+        create 🚀
+      </button>
+    </div>
+    <div class="bg-white my-6 rounded flex items-end">
+      <div class="w-4/12 flex flex-col border-r border-solid border-gray-300 p-6">
+        <div id="ava" class="cursor-pointer w-full hover:border-blue-500 border border-dashed border-transparent transition-all durantion-200 flex items-center justify-center" style="height: 300px">
+          <div class="w-56 h-56 rounded-full overflow-hidden relative border border-solid border-gray-300">
+            <!-- display image -->
+            <div class="bg-gray-400 w-full absolute flex items-center justify-center h-24 transition-all duration-30 opacity-0" id="ava-mask">
+              <span class="text-3xl">📷</span>
+            </div>
+          </div>
         </div>
-        <label class="flex items-center" for="title">CV title</label>
+        <div class="flex items-center mt-4">
+          <label for="birth" class="uppercase">birthday</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="birth" placeholder="your date of birth 🎏">
+        </div>
+        <div class="flex items-center">
+          <label for="birth" class="uppercase">phone</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="birth" placeholder="your phone number 📞">
+        </div>
       </div>
-      <span>Update on dd/mm/yyyy</span>
+      <div class="w-8/12">
+      </div>
     </div>
   </main>
   <%- include ('../partials/footer.ejs') %>
