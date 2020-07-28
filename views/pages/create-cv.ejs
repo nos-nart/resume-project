@@ -1,0 +1,33 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('../partials/head.ejs') %>
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body class="bg-gray-300">
+  <header>
+    <%- include ('../partials/header.ejs') %>
+  </header>
+  <main class="container m-auto">
+    <div class="bg-white my-6 p-4 flex items-end">
+      <div class="input-material">
+        <input id="title" autocomplete="off" name="title" type="text" placeholder="&nbsp;">
+        <div class="input-icon">
+          <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <label class="flex items-center" for="title">CV title</label>
+      </div>
+      <span>Update on dd/mm/yyyy</span>
+    </div>
+  </main>
+  <%- include ('../partials/footer.ejs') %>
+</body>
+
+</html>

@@ -15,11 +15,11 @@
         class="capitalize font-bold hover:underline transition-all duration-300 text-xl absolute" href="/">🏠 home <<
           </a>
       <div class="w-3/5 bg-gray-300 flex flex-col items-center justify-center">
-        <img style="width: 400px" src="images/sign-in.svg" alt="sign-in">
+        <img style="width: 350px" src="images/sign-in.svg" alt="sign-in">
         <%- include ('../partials/footer.ejs') %>
       </div>
       <div class="flex justify-center items-center w-2/5">
-        <form class="mx-32 w-full p-8 shadow-lg flex flex-col rounded bg-white p-3">
+        <form class="w-full p-8 shadow-lg flex flex-col rounded bg-white p-3" style="width: 420px;">
           <p class="font-bold text-2xl uppercase text-green-500 flex items-center">
             <span>Sign in</span>
             <svg class="w-6 h-6 ml-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -31,28 +31,28 @@
             </svg>
           </p>
           <div class="input-material">
-            <input autocomplete="off" name="username" type="text" placeholder="&nbsp;">
-            <label class="flex items-center" for="name">
+            <input id="username" autocomplete="off" name="username" type="text" placeholder="&nbsp;">
+            <div class="input-icon">
               <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
-              <span>username</span>
-            </label>
+            </div>
+            <label class="flex items-center" for="name">username</label>
           </div>
           <p id="username-err" class="text-sm h-8 text-red-500 font-bold"></p>
           <div class="input-material">
-            <input autocomplete="off" name="password" type="password" placeholder="&nbsp;">
-            <label class="flex items-center" for="password">
+            <input id="password" autocomplete="off" name="password" type="password" placeholder="&nbsp;">
+            <div class="input-icon">
               <svg class="w-6 h-6 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path
                   d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
                 </path>
               </svg>
-              <span>password</span>
-            </label>
+            </div>
+            <label class="flex items-center" for="password">password</label>
           </div>
           <p id="password-err" class="text-sm h-8 text-red-500 font-bold"></p>
           <div class="flex justify-end my-3">

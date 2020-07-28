@@ -1,4 +1,4 @@
-const logger = require('../config')
+const { logger } = require('../config')
 
 /* eslint-disable */
 const errorHandler = (err, req, res, next) => {

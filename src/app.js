@@ -8,6 +8,7 @@ const { errorHandler } = require('./middleware')
 
 const routes = require('./routes')
 const userRoute = require('./modules/user/user.route')
+const cvRoute = require('./modules/cv/cv.route')
 
 const app = express()
 
@@ -28,7 +29,9 @@ app.use(
   })
 )
 app.use('/', routes)
-app.use('/api', userRoute)
+app.use('/account', userRoute)
+app.use('/cv', cvRoute)
+
 app.use(expressLogger)
 
 app.use(errorHandler)

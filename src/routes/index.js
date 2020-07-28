@@ -18,6 +18,10 @@ router.get('/user/detail/:id', (req, res) => {
   res.render('pages/account-detail', { userName: 'nos nart' })
 })
 
+router.get('/cv/create', (req, res) => {
+  res.render('pages/create-cv', { userName: 'nos nart' })
+})
+
 router.get('*', (req, res) => {
   res.render('pages/404')
 })
