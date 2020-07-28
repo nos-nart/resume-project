@@ -23,6 +23,18 @@
       display: flex;
       opacity: 1;
     }
+
+    .education-time::before {
+      content: "";
+      width: 0.75rem;
+      height: 0.75rem;
+      background: #cecece;
+      position: absolute;
+      border-radius: 99px;
+      top: 50%;
+      left: -1rem;
+      transform: translate(-50%, -50%);
+    }
   </style>
 </head>
 
@@ -53,8 +65,50 @@
           <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="birth" placeholder="your date of birth 🎏">
         </div>
         <div class="flex items-center">
-          <label for="birth" class="uppercase">phone</label>
-          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="birth" placeholder="your phone number 📞">
+          <label for="phone" class="uppercase">phone</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="phone" placeholder="your phone number 📞">
+        </div>
+        <div class="flex items-center">
+          <label for="address" class="uppercase">address</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="address" placeholder="your address 🗺">
+        </div>
+        <div class="flex items-center">
+          <label for="email" class="uppercase">email</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="email" placeholder="your email 📧">
+        </div>
+        <div class="flex items-center">
+          <label for="github" class="uppercase">github</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="github" placeholder="your github 🖥">
+        </div>
+        <div class="flex items-center">
+          <label for="facebook" class="uppercase">facebook</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="facebook" placeholder="your facebook 👍">
+        </div>
+        <div class="flex items-center">
+          <label for="instagram" class="uppercase">instagram</label>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="instagram" placeholder="your instagram 📸">
+        </div>
+        <div class="mt-3">
+          <p class="uppercase"><span class="text-3xl mr-4">🎮</span>hobbies</p>
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="hobbies" placeholder="your hobbies">
+        </div>
+        <div class="mt-3">
+          <p class="uppercase"><span class="text-3xl mr-4">🎓</span>education</p>
+          <div class="border-l border-solid border-gray-400 ml-4 pl-4">
+            <div class="education-time relative">
+              <input class="outline-none border-none py-2 flex-1" type="text" id="education-time" placeholder="mm/yyyy - mm/yyyy 📆">
+            </div>
+            <input class="outline-none border-none py-2 flex-1" type="text" id="school-name" placeholder="School name 🏢">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="major" placeholder="Major name 🗞">
+            <div class="flex items-center">
+              <label for="gpa" class="uppercase">gpa:</label>
+              <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="gpa" placeholder="4.0">
+            </div>
+            <input class="outline-none border-none py-2 flex-1" type="text" id="description-school" placeholder="Description 📝">
+          </div>
+        </div>
+        <div class="mt-3">
+          <p class="uppercase"><span class="text-3xl mr-4">🌏</span>languages</p>
         </div>
       </div>
       <div class="w-8/12">
