@@ -1,6 +1,6 @@
 const passport = require('passport')
 const User = require('../modules/user/user.model')
-const { Strategy } = require('./passport-local')
+const { Strategy } = require('passport-local')
 
 const authFields = {
   usernameField: 'username',
@@ -29,7 +29,7 @@ passport.use(
 )
 
 passport.use(
-  'signup',
+  'register',
   new Strategy(authFields, async (req, username, password, cb) => {
     try {
       const checkUsername = await User.checkExistingField('username', username)

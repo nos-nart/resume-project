@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const config = require('./config')
+const secrets = require('./secrets')
 
-const { uri } = config.db
+const { uri } = secrets.db
 
 const connectDB = function () {
   const db = mongoose.connection
@@ -15,6 +15,7 @@ const connectDB = function () {
   })
 
   return mongoose.connect(uri, {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // autoReconnect: true,

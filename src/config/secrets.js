@@ -1,4 +1,4 @@
-const config = {
+const secrets = {
   server: {
     port: process.env.PORT || '6789',
   },
@@ -11,4 +11,4 @@ const config = {
   },
 }
 
-module.exports = config
+module.exports = secrets

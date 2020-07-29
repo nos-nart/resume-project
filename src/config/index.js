@@ -1,9 +1,9 @@
-const config = require('./config')
+const secrets = require('./secrets')
 const connectDB = require('./db')
 const logger = require('./logger')
 
 module.exports = {
-  config,
+  secrets,
   connectDB,
   logger,
 }

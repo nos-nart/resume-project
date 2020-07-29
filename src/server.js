@@ -1,8 +1,8 @@
 const app = require('./app')
 // eslint-disable-next-line no-unused-vars
-const { config, connectDB, logger } = require('./config')
+const { secrets, connectDB, logger } = require('./config')
 
-const port = config.server.port
+const port = secrets.server.port
 
 connectDB()
   .then(async () => {
