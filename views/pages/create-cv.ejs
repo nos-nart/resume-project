@@ -8,7 +8,7 @@
     <%- css.style %>
 
     [placeholder]:focus::-webkit-input-placeholder {
-      transition: text-indent 0.4s 0.4s ease;
+      transition: text-indent 0.5s 0.5s ease;
       text-indent: -100%;
       opacity: 1;
     }
@@ -16,7 +16,6 @@
     #ava-mask {
       bottom: 0;
       left: 0;
-      display: none;
     }
 
     #ava:hover #ava-mask {
@@ -42,7 +41,7 @@
   <header>
     <%- include ('../partials/header.ejs') %>
   </header>
-  <main class="container m-auto">
+  <main class="container m-auto mt-24">
     <div class="bg-white rounded my-6 p-6 flex items-end">
       <input type="text" class="border-b border-solid border-gray-300 px-4 py-2 outline-none" placeholder="CV title 🍉">
       <span class="mx-8">Update on dd/mm/yyyy</span>
@@ -50,12 +49,12 @@
         create 🚀
       </button>
     </div>
-    <div class="bg-white my-6 rounded flex items-end">
+    <div class="bg-white my-6 rounded flex">
       <div class="w-4/12 flex flex-col border-r border-solid border-gray-300 p-6">
         <div id="ava" class="cursor-pointer w-full hover:border-blue-500 border border-dashed border-transparent transition-all durantion-200 flex items-center justify-center" style="height: 300px">
           <div class="w-56 h-56 rounded-full overflow-hidden relative border border-solid border-gray-300">
             <!-- display image -->
-            <div class="bg-gray-400 w-full absolute flex items-center justify-center h-24 transition-all duration-30 opacity-0" id="ava-mask">
+            <div class="bg-gray-400 w-full absolute flex items-center justify-center h-24 transition-all duration-30 opacity-25" id="ava-mask">
               <span class="text-3xl">📷</span>
             </div>
           </div>
@@ -78,7 +77,7 @@
         </div>
         <div class="flex items-center">
           <label for="github" class="uppercase">github</label>
-          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="github" placeholder="your github 🖥">
+          <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="github" placeholder="your github 🔮">
         </div>
         <div class="flex items-center">
           <label for="facebook" class="uppercase">facebook</label>
@@ -104,14 +103,63 @@
               <label for="gpa" class="uppercase">gpa:</label>
               <input class="outline-none border-none px-4 py-2 flex-1" type="text" id="gpa" placeholder="4.0">
             </div>
-            <input class="outline-none border-none py-2 flex-1" type="text" id="description-school" placeholder="Description 📝">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="school-description" placeholder="description 📝">
           </div>
         </div>
         <div class="mt-3">
           <p class="uppercase"><span class="text-3xl mr-4">🌏</span>languages</p>
+          <div class="ml-4">
+            <input class="outline-none border-none py-2 flex-1 w-full" type="text" id="language-name" placeholder="LANGUAGE NAME">
+            <input class="outline-none border-none py-2 flex-1 w-full" type="text" id="language-efficency" placeholder="0/10">
+          </div>
         </div>
       </div>
       <div class="w-8/12">
+        <div class="border border-dashed border-transparent hover:border-blue-500 transition-all duration-300 p-6">
+          <p class="uppercase">hi, i am</p>
+          <input class="outline-none border-none py-2 flex-1 w-full" autocomplete="off" type="text" id="username" value=<%=userName%>>
+          <input class="outline-none border-none py-2 flex-1 w-full" type="text" id="position" placeholder="your position 💼">
+        </div>
+        <div class="border border-dashed border-transparent hover:border-blue-500 transition-all duration-300 p-6">
+          <p class="uppercase"><span class="text-3xl mr-4">🎯</span>carerr gold</p>
+          <input class="outline-none border-none py-2 flex-1 w-full" type="text" id="career-goal" placeholder="description">
+        </div>
+        <div class="border border-dashed border-transparent hover:border-blue-500 transition-all duration-300 p-6">
+          <p class="uppercase"><span class="text-3xl mr-4">⚔️</span>skill</p>
+          <input class="outline-none border-none py-2 flex-1 w-full" type="text" id="skills" placeholder="skills">
+        </div>
+        <div class="border border-dashed border-transparent hover:border-blue-500 transition-all duration-300 p-6">
+          <p class="uppercase"><span class="text-3xl mr-4">🌈</span>experiences</p>
+          <div class="flex flex-col border-l border-solid border-gray-400 ml-4 pl-4">
+            <div class="education-time relative">
+              <input class="outline-none border-none py-2 flex-1" type="text" id="company-time" placeholder="mm/yyyy - mm/yyyy 📆">
+            </div>
+            <input class="outline-none border-none py-2 flex-1" type="text" id="company-name" placeholder="company name 🏢">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="company-position" placeholder="your position 👨‍🔧">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="company-description" placeholder="description 📝">
+          </div>
+        </div>
+        <div class="border border-dashed border-transparent hover:border-blue-500 transition-all duration-300 p-6">
+          <p class="uppercase"><span class="text-3xl mr-4">🏆</span>archievement</p>
+          <div class="flex flex-col border-l border-solid border-gray-400 ml-4 pl-4">
+            <div class="education-time relative">
+              <input class="outline-none border-none py-2 flex-1" type="text" id="archievement-time" placeholder="mm/yyyy - mm/yyyy 📆">
+            </div>
+            <input class="outline-none border-none py-2 flex-1" type="text" id="archievement-name" placeholder="archievement name 🥇">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="archievement-description" placeholder="description 📝">
+          </div>
+        </div>
+        <div class="border border-dashed border-transparent hover:border-blue-500 transition-all duration-300 p-6">
+          <p class="uppercase"><span class="text-3xl mr-4">📁</span>project</p>
+          <div class="flex flex-col border-l border-solid border-gray-400 ml-4 pl-4">
+            <div class="education-time relative">
+              <input class="outline-none border-none py-2 flex-1" type="text" id="project-time" placeholder="mm/yyyy - mm/yyyy 📆">
+            </div>
+            <input class="outline-none border-none py-2 flex-1" type="text" id="project-name" placeholder="project name 🧷">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="project-link" placeholder="link 🔗">
+            <input class="outline-none border-none py-2 flex-1" type="text" id="project-description" placeholder="description 📝">
+          </div>
+        </div>
       </div>
     </div>
   </main>

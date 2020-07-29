@@ -29,7 +29,7 @@ router.get('/user/detail/:id', (req, res) => {
 
 router.get('/cv/create', (req, res) => {
   res.render('pages/create-cv', {
-    userName: 'nos nart',
+    userName: 'nosnart',
     css: css,
   })
 })

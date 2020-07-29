@@ -13,6 +13,7 @@
 <body>
   <div class="w-full">
     <div class="flex h-screen">
+      <p class="text-xs text-white font-bold px-12 py-1 shadow rounded absolute bg-red-600 text-left hidden" style="top: 2rem; right: 2rem" id="fail-msg"></p>
       <a style="top: 2rem; left: 2rem"
         class="capitalize font-bold hover:underline transition-all duration-300 text-xl absolute" href="/">🏠 home <<
           </a>
@@ -76,7 +77,6 @@
                     href="/sign-in">sign in</a>
                 </div>
               </div>
-              <p class="text-sm text-red-500 text-left" id="fail-msg"></p>
               <div class="flex items-center justify-center mt-4">
                 <button id="sign-up" type="button"
                   class="rounded outline-none hover:shadow transition-all duration-300 text-white bg-green-500 border-none cursor-pointer px-4 py-1">
@@ -95,7 +95,6 @@
           MAX_LENGTH_USERNAME: 'USERNAME cannot has more thant 50 character!',
           REQUIRED_USERNAME: 'USERNAME is required!',
           MIN_LENGTH_PASSWORD: 'PASSWORD must have more than 6 character!',
-          MAX_LENGTH_PASSWORD: 'PASSWORD cannot has more thant 50 character!',
           REQUIRED_PASSWORD: 'PASSWORD is required!',
           CONFIRM_PASSWORD_NOT_MATCH: 'CONFIRM PASSWORD does not match',
           CONFIRM_PASSWORD_REQUIRED: 'CONFIRM PASSWORD is required!'
@@ -133,8 +132,6 @@
           if (password.length > 0) {
             if (password.length < 6) {
               err.passwordErr.push(ERR_MSG.MIN_LENGTH_PASSWORD)
-            } else if (password.length > 50) {
-              err.passwordErr.push(ERR_MSG.MAX_LENGTH_PASSWORD)
             }
           } else {
             err.passwordErr.push(ERR_MSG.REQUIRED_PASSWORD)
@@ -197,16 +194,16 @@
             $.post({
               contentType: 'application/json',
               dataType: 'json',
-              url: '/api/sign-up',
+              url: '/account/sign-up',
               data: JSON.stringify({ username, password })
             })
               .done(function (res) {
-                console.log('xxx ~> ', res);
-                window.location.href = "/sign-in";
+                /* res.render('sign-in', { res }) */
+                /* window.location.href = "/sign-in"; */
               })
               .fail(function (err) {
                 console.log('err ~> ', err);
-                $ele.failMsg.text('Sign up fail!!');
+                $ele.failMsg.fadeIn().text('Sign up fail!!').delay(3000).fadeOut();
               })
           }
         })

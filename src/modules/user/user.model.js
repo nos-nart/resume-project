@@ -1,22 +1,23 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+// const validator = require('validator')
 
 const SALT_WORK_FACTOR = 10
 
 const UserSchema = new mongoose.Schema(
   {
+    googleId: String,
     username: {
       type: String,
-      required: true,
+      required: [true, 'username is required!'],
       trim: true,
       minlength: 6,
       maxlength: 50,
     },
     password: {
       type: String,
-      required: true,
+      required: [true, 'password is required!'],
       minlength: 6,
-      maxlength: 50,
     },
     role: {
       type: String,
@@ -38,24 +39,11 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-UserSchema.pre('save', function (next) {
-  // hash password here!!
-  const user = this
-  if (!user.isModified('password')) return next()
+UserSchema.pre('save', async function (next) {
+  if (!this.password || !this.isModified('password')) return next
 
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-    if (err) return next(err)
-
-    // hash password along with out new salt
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err)
-
-      // override the cleartext password with the hashed one
-      user.password = hash
-      next()
-    })
-  })
+  this.password = await bcrypt.hash(this.password, parseInt(SALT_WORK_FACTOR))
+  next()
 })
 
 /**
@@ -65,10 +53,15 @@ UserSchema.pre('remove', function (next) {
   this.model('CV').deleteMany({ user: this._id }, next)
 })
 
-UserSchema.methods.comparePassword = function (password, cb) {
-  bcrypt.compare(password, this.password, (err, isMatch) => {
-    cb(err, isMatch)
-  })
+UserSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password)
 }
 
-module.exports = mongoose.model('User', UserSchema)
+UserSchema.statics.checkExistingField = async (field, value) => {
+  const checkField = await User.findOne({ [`${field}`]: value })
+  return checkField
+}
+
+const User = mongoose.model('User', UserSchema)
+
+module.exports = User
