@@ -10,3 +10,4 @@
 [](https://itnext.io/implementing-json-web-tokens-passport-js-in-a-javascript-application-with-react-b86b1f313436)
 
 [](https://github.com/ga-wdi-exercises/express-passport-local-authentication)
+[](https://github.com/tutsplus/passport-mongo)

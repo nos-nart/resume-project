@@ -6,6 +6,10 @@ const CVSchema = new mongoose.Schema(
     name: {
       type: String,
     },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     birthday: {
       type: String,
     },
