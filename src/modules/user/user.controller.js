@@ -12,6 +12,16 @@ function viewLogin(req, res) {
   })
 }
 
+function login(req, res) {
+  const loginStrategy = passport.authenticate('login', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+  })
+
+  return loginStrategy(req, res)
+}
+
 function viewRegister(req, res) {
   res.render('pages/register', {
     css: css,
@@ -19,31 +29,25 @@ function viewRegister(req, res) {
   })
 }
 
-function register(req, res) {}
+function register(req, res) {
+  const signupStrategy = passport.authenticate('register', {
+    successRedirect: '/',
+    failureRedirect: '/register',
+    failureFlash: true,
+  })
 
-module.exports = {
-  viewLogin,
-  viewRegister,
+  return signupStrategy(req, res)
 }
 
-// module.exports = {
-//   viewLogin: (req, res) => {
-//     res.render('pages/login', {
-//       css: css,
-//     })
-//   },
-//   login: async (req, res, next) => {},
-//   viewRegister: (req, res) => {
-//     res.render('pages/register', {
-//       css: css,
-//     })
-//   },
-//   register: async (req, res, next) => {},
-//   viewUser: (req, res) => {
-//     res.render('pages/account-detail', {
-//       userName: 'nos nart',
-//       css: css,
-//       route: 'user',
-//     })
-//   },
-// }
+function logout(req, res) {
+  req.logout()
+  res.redirect('/')
+}
+
+module.exports = {
+  viewLogin: viewLogin,
+  login: login,
+  viewRegister: viewRegister,
+  register: register,
+  logout: logout,
+}

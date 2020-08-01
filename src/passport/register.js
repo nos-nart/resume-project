@@ -26,7 +26,7 @@ module.exports = function (passport) {
 
           newUser.save(function (err) {
             if (err) {
-              logger.error('Error in persiting user to DB:' + err)
+              logger.error('Error in persisting user to DB:' + err)
               throw err
             }
             return done(null, newUser)

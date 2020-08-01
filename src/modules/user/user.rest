@@ -1,6 +1,6 @@
 ###
 
-POST http://localhost:3000/api/sign-up
+POST http://localhost:3000/register
 content-Type: application/json
 
 {

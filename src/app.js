@@ -9,7 +9,7 @@ const session = require('express-session')
 const { logger } = require('./config')
 const expressPino = require('express-pino-logger')
 const { errorHandler } = require('./middleware')
-const initPassport = require('./passport/init')
+require('./passport/init')(passport)
 
 const routes = require('./routes')
 
@@ -39,9 +39,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
-initPassport(passport)
+app.use(function (req, res, next) {
+  global.currentUser = req.user
+  res.locals.currentUser = req.user
+  next()
+})
 
-app.use('/', routes)
+app.use(routes)
 
 app.use(expressLogger)
 

@@ -13,7 +13,7 @@
 <body>
   <div class="w-full">
     <div class="flex h-screen">
-      <p class="text-xs text-white font-bold px-12 py-1 shadow rounded absolute bg-red-600 text-left hidden" style="top: 2rem; right: 2rem" id="fail-msg"></p>
+      <p class="text-xs text-white font-bold px-24 py-3 shadow rounded absolute bg-red-600 text-left hidden" style="top: 2rem; right: 2rem" id="fail-msg"></p>
       <a style="top: 2rem; left: 2rem"
         class="capitalize font-bold hover:underline transition-all duration-300 text-xl absolute" href="/">🏠 home <<
           </a>
@@ -194,7 +194,7 @@
             $.post({
               contentType: 'application/json',
               dataType: 'json',
-              url: '/account/register',
+              url: '/register',
               data: JSON.stringify({ username, password })
             })
               .done(function (res) {

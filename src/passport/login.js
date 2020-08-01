@@ -1,10 +1,10 @@
-const LocalStratergy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy
 const User = require('../modules/user/user.model')
 
 module.exports = function (passport) {
   passport.use(
     'login',
-    new LocalStratergy(
+    new LocalStrategy(
       {
         passReqToCallback: true,
       },
