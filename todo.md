@@ -11,3 +11,6 @@
 
 [](https://github.com/ga-wdi-exercises/express-passport-local-authentication)
 [](https://github.com/tutsplus/passport-mongo)
+
+[](https://github.com/shoaibcode/express-handler/tree/upload-image-part1)
+[](https://anonystick.com/blog-developer/uploading-files-cloudinary-using-multer-and-expressjs-2019101942735655)

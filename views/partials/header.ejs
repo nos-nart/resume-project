@@ -14,7 +14,9 @@
       <% } %>
     </div>
     <div class="flex justify-end items-center">
+        <% if(route === 'home') {%>
         <a href="/cv/create" class="no-underline mr-6 rounded-full px-2 py-1 hover:underline bg-white text-gray-800 text-sm">Create CV</a>
+        <% } %>
         <%if (userName) { %>
             Hello <%= userName %>
             <a class="no-underline hover:underline ml-1" href="/logout">logout!</a>

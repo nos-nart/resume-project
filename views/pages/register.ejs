@@ -88,127 +88,125 @@
   </div>
   <script>
     // JS goes from here
-    (function ($) {
-      $(function ($, undefined) {
-        const ERR_MSG = {
-          MIN_LENGTH_USERNAME: 'USERNAME must have more than 6 character!',
-          MAX_LENGTH_USERNAME: 'USERNAME cannot has more thant 50 character!',
-          REQUIRED_USERNAME: 'USERNAME is required!',
-          MIN_LENGTH_PASSWORD: 'PASSWORD must have more than 6 character!',
-          REQUIRED_PASSWORD: 'PASSWORD is required!',
-          CONFIRM_PASSWORD_NOT_MATCH: 'CONFIRM PASSWORD does not match',
-          CONFIRM_PASSWORD_REQUIRED: 'CONFIRM PASSWORD is required!'
+    $(function () {
+      const ERR_MSG = {
+        MIN_LENGTH_USERNAME: 'USERNAME must have more than 6 character!',
+        MAX_LENGTH_USERNAME: 'USERNAME cannot has more thant 50 character!',
+        REQUIRED_USERNAME: 'USERNAME is required!',
+        MIN_LENGTH_PASSWORD: 'PASSWORD must have more than 6 character!',
+        REQUIRED_PASSWORD: 'PASSWORD is required!',
+        CONFIRM_PASSWORD_NOT_MATCH: 'CONFIRM PASSWORD does not match',
+        CONFIRM_PASSWORD_REQUIRED: 'CONFIRM PASSWORD is required!'
+      }
+
+      const $ele = {
+        username: $('#username'),
+        password: $('#password'),
+        passwordConfirm: $('#password-confirm'),
+        signUp: $('#sign-up'),
+        usernameErr: $('#username-err'),
+        passwordErr: $('#password-err'),
+        passwordConfirmErr: $('#password-confirm-err'),
+        failMsg: $('#fail-msg'),
+      }
+
+      function validate(username, password, passwordConfirm) {
+        let err = {
+          hasErr: false,
+          usernameErr: [],
+          passwordErr: [],
+          passwordConfirmErr: []
         }
 
-        const $ele = {
-          username: $('#username'),
-          password: $('#password'),
-          passwordConfirm: $('#password-confirm'),
-          signUp: $('#sign-up'),
-          usernameErr: $('#username-err'),
-          passwordErr: $('#password-err'),
-          passwordConfirmErr: $('#password-confirm-err'),
-          failMsg: $('#fail-msg'),
+        if (username.length > 0) {
+          if (username.length < 6) {
+            err.usernameErr.push(ERR_MSG.MIN_LENGTH_USERNAME)
+          } else if (username.length > 50) {
+            err.usernameErr.push(ERR_MSG.MAX_LENGTH_USERNAME)
+          }
+        } else {
+          err.usernameErr.push(ERR_MSG.REQUIRED_USERNAME)
         }
 
-        function validate(username, password, passwordConfirm) {
-          let err = {
-            hasErr: false,
-            usernameErr: [],
-            passwordErr: [],
-            passwordConfirmErr: []
+        if (password.length > 0) {
+          if (password.length < 6) {
+            err.passwordErr.push(ERR_MSG.MIN_LENGTH_PASSWORD)
           }
-
-          if (username.length > 0) {
-            if (username.length < 6) {
-              err.usernameErr.push(ERR_MSG.MIN_LENGTH_USERNAME)
-            } else if (username.length > 50) {
-              err.usernameErr.push(ERR_MSG.MAX_LENGTH_USERNAME)
-            }
-          } else {
-            err.usernameErr.push(ERR_MSG.REQUIRED_USERNAME)
-          }
-
-          if (password.length > 0) {
-            if (password.length < 6) {
-              err.passwordErr.push(ERR_MSG.MIN_LENGTH_PASSWORD)
-            }
-          } else {
-            err.passwordErr.push(ERR_MSG.REQUIRED_PASSWORD)
-          }
-
-          if (passwordConfirm.length > 0) {
-            if (passwordConfirm !== password) {
-              err.passwordConfirmErr.push(ERR_MSG.CONFIRM_PASSWORD_NOT_MATCH)
-            }
-          } else {
-            err.passwordConfirmErr.push(ERR_MSG.REQUIRED_PASSWORD_CONFIRM)
-          }
-
-          if (err.passwordErr.length > 0 || err.passwordErr.length > 0 || err.passwordConfirmErr.length > 0) {
-            err.hasErr = true
-          }
-
-          return err
+        } else {
+          err.passwordErr.push(ERR_MSG.REQUIRED_PASSWORD)
         }
 
-        $ele.signUp.on('click', function (event) {
-          event.preventDefault();
-          const $self = $(this);
-          const username = $ele.username.val(),
-            password = $ele.password.val(),
-            passwordConfirm = $ele.passwordConfirm.val()
+        if (passwordConfirm.length > 0) {
+          if (passwordConfirm !== password) {
+            err.passwordConfirmErr.push(ERR_MSG.CONFIRM_PASSWORD_NOT_MATCH)
+          }
+        } else {
+          err.passwordConfirmErr.push(ERR_MSG.REQUIRED_PASSWORD_CONFIRM)
+        }
 
-          const {
-            hasErr,
-            usernameErr,
-            passwordErr,
-            passwordConfirmErr
-          } = validate(username, password, passwordConfirm);
+        if (err.passwordErr.length > 0 || err.passwordErr.length > 0 || err.passwordConfirmErr.length > 0) {
+          err.hasErr = true
+        }
 
-          if (hasErr) {
-            if (usernameErr.length > 0) {
-              $ele.username.parent('.input-material').css('border', '1px solid #e53e3e');
-              $ele.usernameErr.text(usernameErr[0])
-            } else {
-              $ele.username.parent('.input-material').css('border', '1px solid #cbd5e0');
-              $ele.usernameErr.text('')
-            }
+        return err
+      }
 
-            if (passwordErr.length > 0) {
-              $ele.password.parent('.input-material').css('border', '1px solid #e53e3e');
-              $ele.passwordErr.text(passwordErr[0]);
-            } else {
-              $ele.password.parent('.input-material').css('border', '1px solid #cbd5e0');
-              $ele.passwordErr.text('');
-            }
+      $ele.signUp.on('click', function (event) {
+        event.preventDefault();
+        const $self = $(this);
+        const username = $ele.username.val(),
+          password = $ele.password.val(),
+          passwordConfirm = $ele.passwordConfirm.val()
 
-            if (passwordConfirmErr.length > 0) {
-              $ele.passwordConfirm.parent('.input-material').css('border', '1px solid #e53e3e');
-              $ele.passwordConfirmErr.text(passwordConfirmErr[0])
-            } else {
-              $ele.passwordConfirm.parent('.input-material').css('border', '1px solid #cbd5e0');
-              $ele.passwordConfirmErr.text('')
-            }
+        const {
+          hasErr,
+          usernameErr,
+          passwordErr,
+          passwordConfirmErr
+        } = validate(username, password, passwordConfirm);
+
+        if (hasErr) {
+          if (usernameErr.length > 0) {
+            $ele.username.parent('.input-material').css('border', '1px solid #e53e3e');
+            $ele.usernameErr.text(usernameErr[0])
           } else {
-            $.post({
-              contentType: 'application/json',
-              dataType: 'json',
-              url: '/register',
-              data: JSON.stringify({ username, password })
+            $ele.username.parent('.input-material').css('border', '1px solid #cbd5e0');
+            $ele.usernameErr.text('')
+          }
+
+          if (passwordErr.length > 0) {
+            $ele.password.parent('.input-material').css('border', '1px solid #e53e3e');
+            $ele.passwordErr.text(passwordErr[0]);
+          } else {
+            $ele.password.parent('.input-material').css('border', '1px solid #cbd5e0');
+            $ele.passwordErr.text('');
+          }
+
+          if (passwordConfirmErr.length > 0) {
+            $ele.passwordConfirm.parent('.input-material').css('border', '1px solid #e53e3e');
+            $ele.passwordConfirmErr.text(passwordConfirmErr[0])
+          } else {
+            $ele.passwordConfirm.parent('.input-material').css('border', '1px solid #cbd5e0');
+            $ele.passwordConfirmErr.text('')
+          }
+        } else {
+          $.post({
+            contentType: 'application/json',
+            dataType: 'json',
+            url: '/register',
+            data: JSON.stringify({ username, password })
+          })
+            .done(function (res) {
+              /* res.render('sign-in', { res }) */
+              /* window.location.href = "/sign-in"; */
             })
-              .done(function (res) {
-                /* res.render('sign-in', { res }) */
-                /* window.location.href = "/sign-in"; */
-              })
-              .fail(function (err) {
-                console.log('err ~> ', err);
-                $ele.failMsg.fadeIn().text('Sign up fail!!').delay(3000).fadeOut();
-              })
-          }
-        })
-      });
-    })(jQuery);
+            .fail(function (err) {
+              console.log('err ~> ', err);
+              $ele.failMsg.fadeIn().text('Sign up fail!!').delay(3000).fadeOut();
+            })
+        }
+      })
+    });
   </script>
 </body>
 
