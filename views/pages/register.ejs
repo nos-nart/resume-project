@@ -190,20 +190,19 @@
             $ele.passwordConfirmErr.text('')
           }
         } else {
-          $.post({
+          $.ajax({
+            type: "POST",
+            url: "/register",
+            data: JSON.stringify({ username, password }),
             contentType: 'application/json',
             dataType: 'json',
-            url: '/register',
-            data: JSON.stringify({ username, password })
-          })
-            .done(function (res) {
-              /* res.render('sign-in', { res }) */
-              /* window.location.href = "/sign-in"; */
-            })
-            .fail(function (err) {
-              console.log('err ~> ', err);
+            success: function (response) {
+
+            },
+            error: function() {
               $ele.failMsg.fadeIn().text('Sign up fail!!').delay(3000).fadeOut();
-            })
+            }
+          });
         }
       })
     });

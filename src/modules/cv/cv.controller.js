@@ -1,14 +1,13 @@
 const CV = require('./cv.model')
 const dayjs = require('dayjs')
 const fs = require('fs')
-const { upload } = require('../../config')
-console.log('upload', upload)
+const { uploadImage, logger } = require('../../config')
 
 const css = {
   style: fs.readFileSync('public/styles/index.css', 'utf8'),
 }
 
-function viewCreate(req, res) {
+async function viewCreate(req, res) {
   res.render('pages/create-cv', {
     userName: 'nosnart',
     css: css,
@@ -17,9 +16,20 @@ function viewCreate(req, res) {
   })
 }
 
-function createCV(req, res, next) {
+async function createCV(req, res, next) {
   // upload the image to cloudinary by using multer
   // then get back an url and save It to mongo
+  try {
+    logger.info(req)
+    // const imageStream = req
+    // console.log('createCV -> imageStream', imageStream)
+    // const imageName
+    const avaUrl = await uploadImage(req.file.path)
+    await fs.unlinkSync(req.file.path)
+  } catch (err) {
+    logger.error(err)
+    res.status(500).json({ message: err.message })
+  }
 }
 
 module.exports = {

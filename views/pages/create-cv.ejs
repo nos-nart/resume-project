@@ -190,22 +190,25 @@
       })
 
       function onCreateCV($ele) {
-        $ele.submit(function (e) { 
+        $ele.submit(function (e) {
           e.preventDefault();
-          // var formData = new FormData()
-          // formData.append("name", "hi")
+          const form = $ELE.formCreate[0]
+          let formData = new FormData(form)
+          // formData.append("title", "hi")
           // formData.append("image", file1)
           // formData.append("image", file2)
 
-          // $.ajax({
-          //   type: "POST",
-          //   url: "url",
-          //   data: new FormData(),
-          //   dataType: "json",
-          //   success: function (response) {
-              
-          //   }
-          // });
+          $.ajax({
+            type: "POST",
+            url: "/cv/create",
+            data: formData,
+            contentType: false,
+            processData: false,
+            // dataType: "json",
+            success: function (response) {
+
+            }
+          });
         });
       }
 
