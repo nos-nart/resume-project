@@ -21,8 +21,8 @@ router.route('/login').get(UserController.viewLogin)
 
 router
   .route('/register')
-  .get(UserController.viewRegister)
-  .post(UserController.register)
+  .get(UserController.getRegister)
+  .post(UserController.postRegister)
 
 // .post('/register', UserController.register)
 // // view user detail route

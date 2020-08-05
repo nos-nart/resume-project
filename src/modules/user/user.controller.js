@@ -8,12 +8,12 @@ const css = {
 function viewLogin(req, res) {
   res.render('pages/login', {
     css: css,
-    message: req.flash('message'),
+    message: req.flash('loginMessage'),
   })
 }
 
 function login(req, res) {
-  const loginStrategy = passport.authenticate('login', {
+  const loginStrategy = passport.authenticate('local-login', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
@@ -22,15 +22,15 @@ function login(req, res) {
   return loginStrategy(req, res)
 }
 
-function viewRegister(req, res) {
+function getRegister(req, res) {
   res.render('pages/register', {
     css: css,
-    message: req.flash('message'),
+    message: req.flash('registerMessage'),
   })
 }
 
-function register(req, res) {
-  const signupStrategy = passport.authenticate('register', {
+function postRegister(req, res) {
+  const signupStrategy = passport.authenticate('local-register', {
     successRedirect: '/',
     failureRedirect: '/register',
     failureFlash: true,
@@ -47,7 +47,7 @@ function logout(req, res) {
 module.exports = {
   viewLogin: viewLogin,
   login: login,
-  viewRegister: viewRegister,
-  register: register,
+  getRegister,
+  postRegister,
   logout: logout,
 }

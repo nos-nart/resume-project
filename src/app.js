@@ -6,10 +6,9 @@ const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 const passport = require('passport')
 const session = require('express-session')
-const { logger } = require('./config')
+const { logger, passportInit } = require('./config')
 const expressPino = require('express-pino-logger')
 const { errorHandler } = require('./middleware')
-require('./passport/init')(passport)
 
 const routes = require('./routes')
 
@@ -37,6 +36,8 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+passportInit(passport)
+
 app.use(flash())
 
 app.use(function (req, res, next) {
