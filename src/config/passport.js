@@ -28,11 +28,11 @@ const passportInit = (passport) => {
 
           // If there already is a user with this email
           if (user) {
-            logger.info('This username is already taken')
+            // logger.info('This username is already taken')
             return callback(
               null,
               false,
-              req.flash('message', 'This username is already taken.')
+              req.flash('registerMessage', 'This username is already taken.')
             )
           } else {
             // There is no email registered with this email

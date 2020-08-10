@@ -9,19 +9,9 @@ const session = require('express-session')
 const { logger, passportInit } = require('./config')
 const expressPino = require('express-pino-logger')
 const { errorHandler } = require('./middleware')
-
-const routes = require('./routes')
+const routes = require('./routes')(passport)
 
 const app = express()
-
-const expressLogger = expressPino({
-  logger,
-})
-
-// set the view engine to ejs
-app.set('view engine', 'ejs')
-app.set('views', './views')
-app.use(express.static('public'))
 
 app.use(bodyParser.json())
 app.use(express.json({ limit: '50mb' }))
@@ -34,9 +24,20 @@ app.use(
     saveUninitialized: true,
   })
 )
+
 app.use(passport.initialize())
 app.use(passport.session())
+
 passportInit(passport)
+
+const expressLogger = expressPino({
+  logger,
+})
+
+// set the view engine to ejs
+app.set('view engine', 'ejs')
+app.set('views', './views')
+app.use(express.static('public'))
 
 app.use(flash())
 
@@ -46,7 +47,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use(routes)
+app.use('/', routes)
 
 app.use(expressLogger)
 

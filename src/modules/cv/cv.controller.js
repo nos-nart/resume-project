@@ -2,6 +2,7 @@ const CV = require('./cv.model')
 const dayjs = require('dayjs')
 const fs = require('fs')
 const { uploadImage, logger } = require('../../config')
+const httpStatus = require('http-status')
 
 const css = {
   style: fs.readFileSync('public/styles/index.css', 'utf8'),
@@ -28,7 +29,7 @@ async function createCV(req, res, next) {
     await fs.unlinkSync(req.file.path)
   } catch (err) {
     logger.error(err)
-    res.status(500).json({ message: err.message })
+    res.status(httpStatus[500]).json({ message: err.message })
   }
 }
 
