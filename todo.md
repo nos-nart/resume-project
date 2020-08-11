@@ -19,3 +19,5 @@
 
 [](https://github.com/godcrampy/Express-Local-Auth-Template)
 [](https://github.com/codythegreat/express-passport-local-auth-boilerplate)
+[](https://github.com/manjeshpv/passport-local-express4-mongoose-example)
+[](https://github.com/djizco/mern-boilerplate)
