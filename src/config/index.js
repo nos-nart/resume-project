@@ -2,8 +2,7 @@ const secrets = require('./secrets')
 const connectDB = require('./db')
 const logger = require('./logger')
 const { uploadImage, getResized } = require('./cloudinary')
-const multerConfig = require('./multerConfig')
-const passportInit = require('./passport')
+const multerConfig = require('./multer.config')
 
 module.exports = {
   secrets,
@@ -12,5 +11,4 @@ module.exports = {
   multerConfig,
   uploadImage,
   getResized,
-  passportInit,
 }

@@ -7,6 +7,7 @@ const SALT_WORK_FACTOR = 10
 const UserSchema = new mongoose.Schema(
   {
     googleId: String,
+    email: String,
     username: {
       type: String,
       required: [true, 'username is required!'],

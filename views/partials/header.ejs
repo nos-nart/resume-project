@@ -14,18 +14,23 @@
       <% } %>
     </div>
     <div class="flex justify-end items-center">
-        <% if(route === 'home') {%>
+      <% if(route === 'home') {%>
         <a href="/cv/create" class="no-underline mr-6 rounded-full px-2 py-1 hover:underline bg-white text-gray-800 text-sm">Create CV</a>
-        <% } %>
-        <%if (userName) { %>
-            Hello <%= userName %>
-            <a class="no-underline hover:underline ml-1" href="/logout">logout!</a>
-        <% } else { %>
-            <div class="flex items-center">
-                <a href="/login" class="no-underline mx-3 hover:underline">login</a>/
-                <a href="/register" class="no-underline hover:underline ml-1">register</a>
-            </div>
-        <% } %>
+      <% } %>
+      <% if(route === 'cv') {%>
+        <a class="mx-1 transition-all duration-300 hover:underline" href="/cv">Home</a>
+        <a class="mx-1 transition-all duration-300 hover:underline" href="/cv/all">My CV</a>
+        <a class="mx-1 transition-all duration-300 hover:underline" href="/user/profile">My profile</a>
+      <% } %>
+      <%if (userName) { %>
+        Hello <%= userName %>
+        <a class="no-underline hover:underline ml-1" href="/logout">logout!</a>
+      <% } else { %>
+        <div class="flex items-center">
+          <a href="/login" class="no-underline mx-3 hover:underline">login</a>/
+          <a href="/register" class="no-underline hover:underline ml-1">register</a>
+        </div>
+      <% } %>
     </div>
   </nav>
 </div>

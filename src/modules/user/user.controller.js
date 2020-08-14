@@ -7,14 +7,16 @@ const css = {
 function getLogin(req, res) {
   res.render('pages/login', {
     css: css,
+    title: 'Login',
     message: req.flash('loginMessage'),
   })
 }
 
-function getRegister(req, res) {
-  res.render('pages/register', {
+function getSignup(req, res) {
+  res.render('pages/signup', {
     css: css,
-    message: req.flash('registerMessage'),
+    title: 'Signup',
+    message: req.flash('signupMessage'),
   })
 }
 
@@ -25,6 +27,6 @@ function logout(req, res) {
 
 module.exports = {
   getLogin,
-  getRegister,
+  getSignup,
   logout,
 }
