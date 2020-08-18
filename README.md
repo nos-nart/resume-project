@@ -1,12 +1,13 @@
 ---
-# README
+# Summary
 ---
 
 ## Chuc nang
 
-- Tao CV...
-- Tao CV...
-- Tao CV...
+- Authenticate
+- Create cv
+- View cv
+- ...
 
 ## Tech stack
 
@@ -14,16 +15,6 @@
 
 ## Database
 
-| User      |
-| --------- |
-| \_id      |
-| name      |
-| birthday  |
-| mail      |
-| phone     |
-| projects  |
-| cvCreated |
-| role      |
 
 ## Design
 
@@ -39,7 +30,7 @@
 
 ```
 Install VScode extension: 'prettier' + 'eslint'
-Mn nhan Ctrl + ',' va search 'format on save' va danh dau tich
+Enable format on save
 ```
 
 - Clone
@@ -54,7 +45,7 @@ git clone https://github.com/nos-nart/project-cv.git
 npm install | yarn
 ```
 
-- Tao file .env trong root folder
+- Create .env file in root folder
 
 ```
 PORT=3000
@@ -82,8 +73,6 @@ npm run dev | yarn dev
 - [x] Init project
 - [x] Config eslint + pretiter + husky
 - [ ] Config logger
-- [x] API login (Thai)
-- [x] API CRUD user account (Thai)
 - [ ] API create Curriculum vitæ
 - [ ] API edit Curriculum vitæ
 - [ ] Screen login
