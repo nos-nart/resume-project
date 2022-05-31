@@ -2,7 +2,7 @@
 # Summary
 ---
 
-## Chuc nang
+##  Features
 
 - Authenticate
 - Create cv
